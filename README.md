@@ -4,6 +4,11 @@ This is a simple example when we have a base abstract class called `Text` and so
 
 Then we have a `DecoratorText` abstract class which IS a `Text` but also HAS a `Text` and has some implementations like `SnakeDecorator` and `NoSpaceDecorator` that change the behaviour of any implementation of the `Text` abstract class.
 
+## Diagram
+
+![Decorator Pattern Diagram](https://raw.githubusercontent.com/jbaldrich/decorator-pattern-php/master/uml-diagram.png)
+
+
 ## Installation
 
 1. Clone the repository:
