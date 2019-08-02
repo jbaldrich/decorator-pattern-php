@@ -6,7 +6,7 @@ final class SnakeDecorator extends DecoratorText {
 
 	public function getText() : string
 	{
-		return preg_replace(
+		return \preg_replace(
 			'/\s+/',
 			'_',
 			$this->text->getText()

@@ -3,42 +3,59 @@
 namespace JacoBaldrich\DecoratorPattern\Tests;
 
 use PHPUnit\Framework\TestCase;
+use JacoBaldrich\DecoratorPattern\Text;
 use JacoBaldrich\DecoratorPattern\UppercaseText;
 use JacoBaldrich\DecoratorPattern\SnakeDecorator;
 use JacoBaldrich\DecoratorPattern\NoSpaceDecorator;
 
-final class TestUppercaseText extends TestCase
+final class UppercaseTextTest extends TestCase
 {
 
-	public function testIsDecoratedAsSnake()
+	public function testIsDecoratedAsSnake() : void
 	{
-		// Given:
-		$string = 'ola ke ase';
+		$text = $this->givenAnUppercaseText();
 
-		// When:
-		$text = new UppercaseText( $string );
-		$snake = new SnakeDecorator( $text );
+		$decorator = $this->whenAddDecorator(
+			SnakeDecorator::class,
+			$text
+		);
 
-		// Then:
-		$this->assertEquals(
+		$this->thenResultIs(
 			'OLA_KE_ASE',
-			$snake->getText()
+			$decorator
 		);
 	}
 
-	public function testIsDecoratedAsNoSpace()
+	public function testIsDecoratedAsNoSpace() : void
 	{
-		// Given:
-		$string = 'ola ke ase';
+		$text = $this->givenAnUppercaseText();
 
-		// When:
-		$text = new UppercaseText( $string );
-		$snake = new NoSpaceDecorator( $text );
+		$decorator = $this->whenAddDecorator(
+			NoSpaceDecorator::class,
+			$text
+		);
 
-		// Then:
-		$this->assertEquals(
+		$this->thenResultIs(
 			'OLAKEASE',
-			$snake->getText()
+			$decorator
+		);
+	}
+
+	private function givenAnUppercaseText() : UppercaseText
+	{
+		return new UppercaseText('ola ke ase');
+	}
+
+	private function whenAddDecorator( string $decorator, UppercaseText $text ) : Text
+	{
+		return new $decorator( $text );
+	}
+
+	private function thenResultIs( string $expected, Text $decorator ) : void
+	{
+		$this->assertEquals(
+			$expected,
+			$decorator->getText()
 		);
 	}
 }

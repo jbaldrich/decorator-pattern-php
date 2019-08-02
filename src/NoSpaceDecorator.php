@@ -6,7 +6,7 @@ final class NoSpaceDecorator extends DecoratorText {
 
 	public function getText() : string
 	{
-		return preg_replace(
+		return \preg_replace(
 			'/\s+/',
 			'',
 			$this->text->getText()

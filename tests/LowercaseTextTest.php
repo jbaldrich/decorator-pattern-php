@@ -3,6 +3,7 @@
 namespace JacoBaldrich\DecoratorPattern\Tests;
 
 use PHPUnit\Framework\TestCase;
+use JacoBaldrich\DecoratorPattern\Text;
 use JacoBaldrich\DecoratorPattern\LowercaseText;
 use JacoBaldrich\DecoratorPattern\SnakeDecorator;
 use JacoBaldrich\DecoratorPattern\NoSpaceDecorator;
@@ -10,35 +11,51 @@ use JacoBaldrich\DecoratorPattern\NoSpaceDecorator;
 final class LowercaseTextTest extends TestCase
 {
 
-	public function testIsDecoratedAsSnake()
+	public function testIsDecoratedAsSnake() : void
 	{
-		// Given:
-		$string = 'OLA KE ASE';
+		$text = $this->givenALowercaseText();
 
-		// When:
-		$text = new LowercaseText( $string );
-		$snake = new SnakeDecorator( $text );
+		$decorator = $this->whenAddDecorator(
+			SnakeDecorator::class,
+			$text
+		);
 
-		// Then:
-		$this->assertEquals(
+		$this->thenResultIs(
 			'ola_ke_ase',
-			$snake->getText()
+			$decorator
 		);
 	}
 
-	public function testIsDecoratedAsNoSpace()
+	public function testIsDecoratedAsNoSpace() : void
 	{
-		// Given:
-		$string = 'OLA KE ASE';
+		$text = $this->givenALowercaseText();
 
-		// When:
-		$text = new LowercaseText( $string );
-		$snake = new NoSpaceDecorator( $text );
+		$decorator = $this->whenAddDecorator(
+			NoSpaceDecorator::class,
+			$text
+		);
 
-		// Then:
-		$this->assertEquals(
+		$this->thenResultIs(
 			'olakease',
-			$snake->getText()
+			$decorator
+		);
+	}
+
+	private function givenALowercaseText() : LowercaseText
+	{
+		return new LowercaseText('OLA KE ASE');
+	}
+
+	private function whenAddDecorator( string $decorator, LowercaseText $text ) : Text
+	{
+		return new $decorator( $text );
+	}
+
+	private function thenResultIs( string $expected, Text $decorator ) : void
+	{
+		$this->assertEquals(
+			$expected,
+			$decorator->getText()
 		);
 	}
 }
