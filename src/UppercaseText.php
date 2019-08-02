@@ -11,7 +11,7 @@ final class UppercaseText extends Text {
 		$this->text = $text;
 	}
 
-	public function renderText() : string
+	public function getText() : string
 	{
 		return \strtoupper( $this->text );
 	}

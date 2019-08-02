@@ -11,7 +11,7 @@ final class LowercaseText extends Text {
 		$this->text = $text;
 	}
 
-	public function renderText() : string
+	public function getText() : string
 	{
 		return \strtolower( $this->text );
 	}

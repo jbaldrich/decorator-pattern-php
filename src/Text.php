@@ -4,6 +4,6 @@ namespace JacoBaldrich\DecoratorPattern;
 
 abstract class Text {
 
-	public abstract function renderText() : string;
+	public abstract function getText() : string;
 
 }

@@ -22,7 +22,7 @@ final class LowercaseTextTest extends TestCase
 		// Then:
 		$this->assertEquals(
 			'ola_ke_ase',
-			$snake->renderText()
+			$snake->getText()
 		);
 	}
 
@@ -38,7 +38,7 @@ final class LowercaseTextTest extends TestCase
 		// Then:
 		$this->assertEquals(
 			'olakease',
-			$snake->renderText()
+			$snake->getText()
 		);
 	}
 }

@@ -11,6 +11,6 @@ abstract class DecoratorText extends Text {
 		$this->text = $text;
 	}
 
-	public abstract function renderText() : string;
+	public abstract function getText() : string;
 
 }

@@ -4,12 +4,12 @@ namespace JacoBaldrich\DecoratorPattern;
 
 final class SnakeDecorator extends DecoratorText {
 
-	public function renderText() : string
+	public function getText() : string
 	{
 		return preg_replace(
 			'/\s+/',
 			'_',
-			$this->text->renderText()
+			$this->text->getText()
 		);
 	}
 
